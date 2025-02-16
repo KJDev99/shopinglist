@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Content from "./components/content";
+import Footer from "./components/footer";
+import Navbar from "./components/navbar";
+import ModalProduct from "./components/modal/modalProduct";
+import ModalNoProduct from "./components/modal/modalNoProduct";
+import ModalCart from "./components/modal/modalCart";
+import ModalInfo from "./components/modal/modalInfo";
+import ModalConfirm from "./components/modal/modalConfirm";
+import ModalError from "./components/modalError/modalError";
+import ModalMainInfo from "./components/modalInfo/modalMainInfo";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [modalAct, setModalAct] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <Navbar />
+      {modalAct && <ModalProduct setModalAct={setModalAct} />}
+      {/* {modalAct && (
+        <ModalNoProduct
+          setModalAct={setModalAct}
+          text="Unrecognized product"
+          img="/sea.png"
+        />
+      )} */}
+      {/* {modalAct && (
+        <ModalCart
+          setModalAct={setModalAct}
+          status="delete" // add
+          productImg="/sea.png"
+          productTitle="Pasteurized milk House in the Village 2.5%, 930 ml"
+          info="Get the document"
+        />
+      )} */}
+      {/* {modalAct && (
+        <ModalInfo
+          setModalAct={setModalAct}
+          status="info" // check
+          productImg="/sea.png"
+          productTitle="Pasteurized milk House in the Village 2.5%, 930 ml"
+          info="Get the document"
+          buttonText="Cancel"
+        />
+      )} */}
+      {/* {modalAct && <ModalConfirm setModalAct={setModalAct} />} */}
+      {/* <ModalError
+        imgBg={true}
+        title={"The checkout is temporarily closed"}
+        info="Go to another checkout"
+      /> */}
+      {/* <ModalMainInfo
+        img="/apple.svg"
+        title={"The checkout is temporarily closed"}
+      /> */}
+      <Content />
+      <Footer setModalAct={setModalAct} />
+    </div>
+  );
 }
-
-export default App
