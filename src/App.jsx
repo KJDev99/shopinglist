@@ -9,13 +9,15 @@ import ModalInfo from "./components/modal/modalInfo";
 import ModalConfirm from "./components/modal/modalConfirm";
 import ModalError from "./components/modalError/modalError";
 import ModalMainInfo from "./components/modalInfo/modalMainInfo";
+import Screen1 from "./components/screenOne/screen1";
 
 export default function App() {
   const [modalAct, setModalAct] = useState(false);
+  const [screen, setScreen] = useState(true);
 
   return (
     <div>
-      <Navbar />
+      <Navbar screen={screen} />
       {modalAct && <ModalProduct setModalAct={setModalAct} />}
       {/* {modalAct && (
         <ModalNoProduct
@@ -53,8 +55,9 @@ export default function App() {
         img="/apple.svg"
         title={"The checkout is temporarily closed"}
       /> */}
-      <Content />
-      <Footer setModalAct={setModalAct} />
+      {!screen && <Content />}
+      {screen && <Screen1 />}
+      {!screen && <Footer setModalAct={setModalAct} />}
     </div>
   );
 }
